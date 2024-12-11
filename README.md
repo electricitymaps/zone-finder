@@ -17,7 +17,7 @@ This small script replicates the coordinate look up functionality of the [Electr
 
 ## How to use
 
-1. Clone or download this repository
+1. Clone or [download](https://github.com/electricitymaps/zone-finder/archive/refs/heads/main.zip) this repository
 2. Add your coordinates to the `data.csv` file (see example in file)
 3. Run `node index.js`
 4. The coresponding Electricity Maps zone will be written to `data.csv` for each row
