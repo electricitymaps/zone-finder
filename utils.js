@@ -3,6 +3,7 @@ const path = require('path');
 const turf = require('./turf');
 
 const GEO_GENERATED_FILE_PATH = path.resolve(__dirname, 'geo.generated.json');
+const MAX_NEAREST_ZONE_DISTANCE_KM = 50; // Maximum distance in km to consider a zone as "nearest" for reverse geocoding, used to allow for some leeway in case the coordinates are just outside the coastline.
 
 /**
  * Loads the geometry features from disk for reverse geocoding.
@@ -13,7 +14,6 @@ async function loadGeometryFeatures() {
     if (!_geoFeaturePromise) {
         // NOTE we do this async as the file is huge and will block the main thread
         // for several seconds.
-        const tStart = new Date().getTime();
         _geoFeaturePromise = new Promise((resolve, reject) => {
             fs.readFile(GEO_GENERATED_FILE_PATH, (err, data) => {
                 if (err) {
@@ -61,8 +61,6 @@ function getNearestZone({ potentialZones, zoneToLines, targetPoint }) {
 let _geoFeaturePromise = null;
 
 async function reverseGeocode(lon, lat) {
-    const tStart = new Date().getTime();
-
     const { convexhulls, zoneToGeometryFeatures, zoneToLines } = await loadGeometryFeatures();
 
     const targetPoint = turf.point([lon, lat]);
