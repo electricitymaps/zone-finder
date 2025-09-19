@@ -1,5 +1,5 @@
 <p align="center">
-    <img alt="Electricity Maps" src="https://raw.githubusercontent.com/electricitymaps/electricitymaps-contrib/master/web/public/images/electricitymaps-icon.svg" width="100" />
+    <img alt="Electricity Maps" src="https://raw.githubusercontent.com/electricitymaps/electricitymaps-contrib/master/web/public/images/electricity-maps-logo.svg" width="100" />
 </p>
 <h1 align="center">
   Electricity Maps Zone Finder
