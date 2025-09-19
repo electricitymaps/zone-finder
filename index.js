@@ -14,6 +14,14 @@ async function main() {
         const [lon, lat] = row.split(',');
 
         const zone = await reverseGeocode(parseFloat(lon), parseFloat(lat));
+        if (!zone) {
+            const reversedZone = await reverseGeocode(parseFloat(lat), parseFloat(lon));
+            if (reversedZone) {
+                console.log(
+                    `Found a zone (${reversedZone}) by reversing the given coordinates (lon: ${lon}, lat: ${lat}), did you accidentally swap the lat/lon order?`
+                );
+            }
+        }
         results.push(`${lon},${lat},${zone}`);
     }
 
